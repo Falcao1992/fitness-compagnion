@@ -11,22 +11,22 @@ const PASSWORD_REGEX = /^(?=.*\d).{4,8}$/
 
 router.post('/register', async (req, res) => {
     // Params
-    const {username, email, password} = req.body;
+    const {username, email, password, size, weight, dateBirth} = req.body;
     // Check if the fields are completed
     if (email == null || username == null || password == null) {
-        return res.status(400).json({error: 'missing parameters'});
+        return res.status(400).json({msg: 'missing parameters'});
     }
     // Check if username contains between 5 and 12 character
     if (username.length >= 13 || username.length <= 4) {
-        return res.status(400).json({'error': 'username muste be length 5 - 12 '});
+        return res.status(400).json({msg: "Votre pseudo doit contenir entre 5 et 12 caractères"});
     }
     // Check if Email is valid
     if (!EMAIL_REGEX.test(email)) {
-        return res.status(400).json({'error': 'email is not valid'})
+        return res.status(400).json({msg: "Cet email n'est pas valide"})
     }
     // Check if password is secure
     if (!PASSWORD_REGEX.test(password)) {
-        return res.status(400).json({'error': 'Password must be between 4 and 8 digits long and include at least one numeric digit.'})
+        return res.status(400).json({msg: 'Veuillez choisir un mot de passe contenant entre 4 et 8 caractères, et un caractère numérique (1234).'})
     }
 
     asyncLib.waterfall([
@@ -37,7 +37,7 @@ router.post('/register', async (req, res) => {
                     done(null, emailFound)
                 })
                 .catch((err) => {
-                    return res.status(500).json({'error': 'unable to verify user'})
+                    return res.status(500).json({msg: 'unable to verify email'})
                 })
         },
         function (emailFound, done) {
@@ -46,7 +46,7 @@ router.post('/register', async (req, res) => {
                     done(null, emailFound, userFound)
                 })
                 .catch((err) => {
-                    return res.status(500).json({'error': 'unable to verify user'})
+                    return res.status(500).json({msg: 'unable to verify user'})
                 })
         },
         // Crypt password if user not exist in database
@@ -56,9 +56,9 @@ router.post('/register', async (req, res) => {
                     done(null, userFound, bcryptedPassword)
                 })
             } else if (emailFound) {
-                return res.status(409).send({'error': 'Email already exist'})
+                return res.status(409).send({msg: 'Cet Email à déja été utilisé'})
             } else {
-                return res.status(409).send({'error': 'User already exist'})
+                return res.status(409).send({msg: "Ce Pseudo n'est pas disponible"})
             }
         },
         // Create user with new email, username and crypt password
@@ -66,13 +66,16 @@ router.post('/register', async (req, res) => {
             const newUser = User.create({
                 email,
                 username,
+                size,
+                weight,
+                dateBirth,
                 password: bcryptedPassword,
             })
                 .then((newUser) => {
                     done(newUser)
                 })
                 .catch((err) => {
-                    return res.status(500).json({'error': 'cannot add user'})
+                    return res.status(500).json({msg: 'cannot add user'})
                 })
         }
     ], function (newUser) {
@@ -81,7 +84,7 @@ router.post('/register', async (req, res) => {
                 'userId': newUser.id
             })
         } else {
-            return res.status(500).json({'error': 'cannot add user'})
+            return res.status(500).json({msg: 'cannot add user'})
         }
     })
 })

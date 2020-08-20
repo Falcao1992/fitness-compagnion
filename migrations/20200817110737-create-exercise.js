@@ -18,15 +18,6 @@ module.exports = {
             repeat: {
                 type: Sequelize.INTEGER
             },
-            workoutId: {
-                allowNull: false,
-                type: Sequelize.INTEGER,
-                onDelete: 'CASCADE',
-                references: {
-                    model: 'Workouts',
-                    key: 'id',
-                },
-            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE

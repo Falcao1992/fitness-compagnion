@@ -20,6 +20,9 @@ module.exports = {
                 model: 'Users',
                 key: 'id',
             },
+            // if userId is deleted so data workout is deleted too
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
         },
         createdAt: {
             allowNull: false,
