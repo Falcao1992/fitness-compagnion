@@ -16,7 +16,7 @@ router.post("/login", async (req, res) => {
     }
 
     await User.findOne({
-        where: {username: username}
+        where: {username}
     })
         .then(function (userFound) {
             if (userFound) {

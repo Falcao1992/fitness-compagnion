@@ -15,8 +15,8 @@ const router = express.Router();
 // PUT one user by ID
 router.put('/:id', async (req, res) => {
     const {id} = req.params
-    const {username, size, weight, dateBirth, email} = req.body
-    await User.update({username, size, weight, dateBirth, email}, {where: {id}})
+    const {username, size, gender, weight, birthday, email} = req.body
+    await User.update({username, size, gender, weight, birthday, email}, {where: {id}})
     const userUpdated = await User.findOne({where: {id}})
     res.send(userUpdated)
 })

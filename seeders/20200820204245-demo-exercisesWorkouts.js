@@ -3,6 +3,8 @@ module.exports = {
         return queryInterface.bulkInsert('ExercisesWorkouts', [{
             exerciseId: '1',
             workoutId: '1',
+            createdAt: new Date(),
+            updatedAt: new Date()
         }]);
     },
 

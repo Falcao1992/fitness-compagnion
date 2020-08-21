@@ -14,6 +14,10 @@ module.exports = {
             type: Sequelize.STRING,
             allowNull: false
         },
+        gender: {
+            type: Sequelize.STRING,
+            allowNull: true
+        },
         size: {
             type: Sequelize.INTEGER,
             allowNull: true
@@ -22,7 +26,7 @@ module.exports = {
             type: Sequelize.INTEGER,
             allowNull: true
         },
-        dateBirth: {
+        birthday: {
             type: Sequelize.DATE,
             allowNull: true
         },

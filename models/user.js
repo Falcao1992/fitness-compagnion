@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        gender: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         size: {
             type: DataTypes.INTEGER,
             allowNull: true
@@ -16,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: true
         },
-        dateBirth: {
+        birthday: {
             type: DataTypes.DATE,
             allowNull: true
         },

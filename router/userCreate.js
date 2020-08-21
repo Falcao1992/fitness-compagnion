@@ -11,9 +11,9 @@ const PASSWORD_REGEX = /^(?=.*\d).{4,8}$/
 
 router.post('/register', async (req, res) => {
     // Params
-    const {username, email, password, size, weight, dateBirth} = req.body;
+    const {username, email, password, size, weight, birthday, gender} = req.body;
     // Check if the fields are completed
-    if (email == null || username == null || password == null) {
+    if (email == null || username == null || password == null || gender == null) {
         return res.status(400).json({msg: 'missing parameters'});
     }
     // Check if username contains between 5 and 12 character
@@ -66,9 +66,10 @@ router.post('/register', async (req, res) => {
             const newUser = User.create({
                 email,
                 username,
+                gender,
                 size,
                 weight,
-                dateBirth,
+                birthday,
                 password: bcryptedPassword,
             })
                 .then((newUser) => {
