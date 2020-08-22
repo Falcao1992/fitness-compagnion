@@ -1,29 +1,35 @@
 module.exports = {
-    up: (queryInterface, Sequelize) => queryInterface.createTable('Workouts', {
+    up: async (queryInterface, Sequelize) => queryInterface.createTable('DetailsExercises', {
         id: {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
             type: Sequelize.INTEGER
         },
-        name: {
-            type: Sequelize.STRING
-        },
         duration: {
             type: Sequelize.INTEGER
         },
-        date: {
-            type: Sequelize.DATE,
-            allowNull: false,
+        number: {
+            type: Sequelize.INTEGER
         },
-        userId: {
+        series: {
+            type: Sequelize.INTEGER
+        },
+        defaultExerciseId: {
             allowNull: false,
             type: Sequelize.INTEGER,
             references: {
-                model: 'Users',
+                model: 'DefaultExercises',
                 key: 'id',
             },
-            // if userId is deleted so data workout is deleted too
+        },
+        workoutId: {
+            allowNull: false,
+            type: Sequelize.INTEGER,
+            references: {
+                model: 'Workouts',
+                key: 'id',
+            },
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
         },
@@ -36,5 +42,5 @@ module.exports = {
             type: Sequelize.DATE
         }
     }),
-    down: (queryInterface, Sequelize) => queryInterface.dropTable('Workouts'),
-}
+    down: async (queryInterface, Sequelize) => queryInterface.dropTable('DetailsExercises')
+};
