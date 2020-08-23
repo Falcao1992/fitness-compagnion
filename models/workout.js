@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
         name: DataTypes.STRING,
         duration: DataTypes.INTEGER,
         date: DataTypes.DATE,
+        hour: DataTypes.TIME,
         userId: DataTypes.INTEGER,
     }, {});
     Workout.associate = (models) => {

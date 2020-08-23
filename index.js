@@ -17,7 +17,8 @@ app.use('/api/v1/users', require('./router/userCreate'))
 
 app.use('/api/v1/users', require('./router/userLogin'))
 
-// Routes Sessions
+// Routes Workouts
+app.use('/api/v1', require('./router/workouts'))
 
 // Routes Exercises
 
@@ -26,5 +27,5 @@ app.use('/api/v1/users', require('./router/userLogin'))
 const port = 8000
 
 app.listen(port, () => {
-    console.log("Listening on port 8000")
+    console.log(`Listening on port ${port}`)
 })

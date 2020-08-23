@@ -19,8 +19,8 @@ module.exports = (sequelize, DataTypes) => {
         }
     }, {});
     DetailsExercise.associate = (models) => {
-        models.DetailsExercise.belongsTo(models.defaultExercise);
-        models.DetailsExercise.belongsTo(models.workout);
+        models.DetailsExercise.belongsTo(models.DefaultExercise);
+        models.DetailsExercise.belongsTo(models.Workout);
     };
     return DetailsExercise;
 };
