@@ -1,5 +1,5 @@
 const express = require('express');
-const {Workout} = require('../models');
+const {Workout, DetailsExercise} = require('../models');
 
 const router = express.Router();
 
@@ -12,6 +12,15 @@ router.get('/:userId/workouts', async (req, res) => {
     const workouts = await Workout.findAll({where: {userId}})
     res.status(200).send(workouts)
 })
+
+// GET exercises associate at one WorkoutId
+router.get('/:workoutId/exercises', async (req, res) => {
+    const {workoutId } = req.params
+    const exercisesByWorkout = await DetailsExercise.findAll({where: {workoutId}})
+    res.status(200).send(exercisesByWorkout)
+})
+
+
 
 
 // PUT one user by ID
