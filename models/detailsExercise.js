@@ -3,17 +3,17 @@ module.exports = (sequelize, DataTypes) => {
         duration: DataTypes.INTEGER,
         number: DataTypes.INTEGER,
         series: DataTypes.INTEGER,
-        defaultExerciseId: {
+        DefaultExerciseId: {
             type: DataTypes.STRING,
             references: {
                 model: "DefaultExercises",
                 key: 'id'
             }
         },
-        workoutId: {
+        WorkoutId: {
             type: DataTypes.STRING,
             references: {
-                model: "Workout",
+                model: "Workouts",
                 key: 'id'
             }
         }

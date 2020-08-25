@@ -1,26 +1,37 @@
 const express = require('express');
-const {Workout, DetailsExercise} = require('../models');
+const {Workout, DetailsExercise, DefaultExercise} = require('../models');
 
 const router = express.Router();
 
 
 // Routes Workouts
 
-// GET workouts associate at one userId
+// GET workouts (details exercises and default exercises name) associate at one userId
 router.get('/:userId/workouts', async (req, res) => {
     const {userId} = req.params
-    const workouts = await Workout.findAll({where: {userId}})
+    const workouts = await Workout.findAll({
+        where: {userId},
+        include: [
+            {
+                model: DetailsExercise,
+                include: [
+                    {
+                        model: DefaultExercise,
+                        attributes: ['name'],
+                    }
+                ]
+            }
+        ]
+    })
     res.status(200).send(workouts)
 })
 
 // GET exercises associate at one WorkoutId
 router.get('/:workoutId/exercises', async (req, res) => {
-    const {workoutId } = req.params
-    const exercisesByWorkout = await DetailsExercise.findAll({where: {workoutId}})
+    const {workoutId} = req.params
+    const exercisesByWorkout = await DetailsExercise.findAll({where: {workoutId}, include: [DefaultExercise]})
     res.status(200).send(exercisesByWorkout)
 })
-
-
 
 
 // PUT one user by ID
@@ -58,7 +69,6 @@ router.post('/', async (req, res) => {
 })
 
  */
-
 
 
 module.exports = router;

@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
         duration: DataTypes.INTEGER,
         date: DataTypes.DATE,
         hour: DataTypes.TIME,
-        userId: DataTypes.INTEGER,
+        UserId: DataTypes.INTEGER,
     }, {});
     Workout.associate = (models) => {
         models.Workout.belongsTo(models.User,  {onDelete: 'cascade', hooks:true});
