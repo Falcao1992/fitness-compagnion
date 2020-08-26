@@ -26,23 +26,26 @@ router.get('/:userId/workouts', async (req, res) => {
     res.status(200).send(workouts)
 })
 
-// GET exercises associate at one WorkoutId
-router.get('/:workoutId/exercises', async (req, res) => {
-    const {workoutId} = req.params
-    const exercisesByWorkout = await DetailsExercise.findAll({where: {workoutId}, include: [DefaultExercise]})
-    res.status(200).send(exercisesByWorkout)
+// Put Workouts associate at one User
+router.put('/:userId/workout/:id', async (req, res) => {
+    const {userId, id} = req.params
+    const {name, date, duration, hour} = req.body
+    const workoutUpdated = await Workout.update(
+        {name, date, duration, hour},
+        {where: {userId, id}}
+    )
+    res.status(200).send(workoutUpdated)
 })
 
 
-// PUT one user by ID
-/*router.put('/:id', async (req, res) => {
-    const {id} = req.params
-    const {username, size, gender, weight, birthday, email} = req.body
-    await User.update({username, size, gender, weight, birthday, email}, {where: {id}})
-    const userUpdated = await User.findOne({where: {id}})
-    res.send(userUpdated)
+// Get all default exercises
+
+router.get('/defaultExercises', async (req, res) => {
+    const allDefaultExercises = await DefaultExercise.findAll()
+    res.status(200).send(allDefaultExercises)
 })
 
+/*
 // DELETE one user by ID
 router.delete('/:id', async (req, res) => {
     const {id} = req.params
