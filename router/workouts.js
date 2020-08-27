@@ -64,14 +64,14 @@ router.get('/defaultExercises', async (req, res) => {
     res.status(200).send(allDefaultExercises)
 })
 
-// Get all default exercises
+// Get all details exercises
 router.post('/detailsExercise', async (req, res) => {
     const {DefaultExerciseId, duration, number, series, WorkoutId} = req.body
     const newDetailsExercise = await DetailsExercise.create({DefaultExerciseId, duration, number, series, WorkoutId })
     res.status(200).send(newDetailsExercise)
 })
 
-// Get all default exercises
+// Delete one exercise by id
 router.delete('/detailsExercise/:id', async (req, res) => {
     const { id } = req.params
     await DetailsExercise.destroy({ where: { id } })
