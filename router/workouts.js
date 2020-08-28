@@ -46,6 +46,13 @@ router.get('/:userId/workouts/:id', async (req, res) => {
     res.status(200).send(OneWorkout)
 })
 
+// Create one workout
+router.post('/workout/create', async (req, res) => {
+    const {name, duration, date, hour, UserId} = req.body
+    const newWorkout = await Workout.create({name, duration, date, hour, UserId})
+    res.status(200).send(newWorkout)
+})
+
 // Put Workouts associate at one User
 router.put('/:userId/workout/:id', async (req, res) => {
     const {userId, id} = req.params
@@ -57,6 +64,13 @@ router.put('/:userId/workout/:id', async (req, res) => {
     res.status(200).send(workoutUpdated)
 })
 
+// Delete one Workout by id
+router.delete('/workouts/:id', async (req, res) => {
+    const { id } = req.params
+    await Workout.destroy({ where: { id } })
+    res.status(200).send(id)
+})
+
 
 // Get all default exercises
 router.get('/defaultExercises', async (req, res) => {
@@ -64,7 +78,7 @@ router.get('/defaultExercises', async (req, res) => {
     res.status(200).send(allDefaultExercises)
 })
 
-// Get all details exercises
+// Post One exercise
 router.post('/detailsExercise', async (req, res) => {
     const {DefaultExerciseId, duration, number, series, WorkoutId} = req.body
     const newDetailsExercise = await DetailsExercise.create({DefaultExerciseId, duration, number, series, WorkoutId })
