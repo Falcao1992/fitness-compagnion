@@ -6,27 +6,30 @@ const {User} = require('../models');
 
 const router = express.Router();
 
+// Route for login
 router.post("/login", async (req, res) => {
-    // Params
+    // Get Data from Request Body
     const username = req.body.username;
     const password = req.body.password;
-
+    // Check if all fields are completed
     if (username == null || password == null) {
         return res.status(400).json({msg: "missing parameter"});
     }
-
+    // Localize User in DB with username
     await User.findOne({
         where: {username}
     })
         .then(function (userFound) {
+            // If user found in DB, check the password
             if (userFound) {
                 bcrypt.compare(password, userFound.password, function (
                     errBycrypt,
                     resBycrypt
                 ) {
+                    // If password matched send UserId and generate Token
                     if (resBycrypt) {
                         return res.status(200).json({
-                            userId: userFound,
+                            userId: userFound.id,
                             token: generateTokenForUser(userFound)
                         });
                     } else {
@@ -37,6 +40,7 @@ router.post("/login", async (req, res) => {
                 return res.status(404).json({msg: "Pseudo Introuvable"});
             }
         })
+        // If error, we catch it
         .catch(function (err) {
             return res.status(500).json({msg: "unable to verify user"});
         });

@@ -19,6 +19,7 @@
     "express-jwt": "^6.0.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.1.0",
+    "rxjs": "^6.6.3",
     "sequelize": "^6.3.4"
   },
   "devDependencies": {

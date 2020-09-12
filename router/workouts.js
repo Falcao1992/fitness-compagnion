@@ -1,14 +1,16 @@
 const express = require('express');
 const {Workout, DetailsExercise, DefaultExercise} = require('../models');
-
+const {isAuthenticated} = require('../utils/jwt.utils')
 const router = express.Router();
 
 
 // Routes Workouts
 
 // GET workouts (details exercises and default exercises name) associate at one userId
-router.get('/:userId/workouts', async (req, res) => {
-    const {userId} = req.params
+router.get('/workouts', isAuthenticated, async (req, res) => {
+    console.log(req.isAuthenticated)
+    let userId = req.isAuthenticated
+
     const workouts = await Workout.findAll({
         where: {userId},
         include: [
@@ -66,8 +68,8 @@ router.put('/:userId/workout/:id', async (req, res) => {
 
 // Delete one Workout by id
 router.delete('/workouts/:id', async (req, res) => {
-    const { id } = req.params
-    await Workout.destroy({ where: { id } })
+    const {id} = req.params
+    await Workout.destroy({where: {id}})
     res.status(200).send(id)
 })
 
@@ -81,14 +83,14 @@ router.get('/defaultExercises', async (req, res) => {
 // Post One exercise
 router.post('/detailsExercise', async (req, res) => {
     const {DefaultExerciseId, duration, number, series, WorkoutId} = req.body
-    const newDetailsExercise = await DetailsExercise.create({DefaultExerciseId, duration, number, series, WorkoutId })
+    const newDetailsExercise = await DetailsExercise.create({DefaultExerciseId, duration, number, series, WorkoutId})
     res.status(200).send(newDetailsExercise)
 })
 
 // Delete one exercise by id
 router.delete('/detailsExercise/:id', async (req, res) => {
-    const { id } = req.params
-    await DetailsExercise.destroy({ where: { id } })
+    const {id} = req.params
+    await DetailsExercise.destroy({where: {id}})
     res.status(200).send(id)
 })
 
