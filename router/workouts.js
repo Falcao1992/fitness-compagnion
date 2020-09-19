@@ -8,9 +8,7 @@ const router = express.Router();
 
 // GET workouts (details exercises and default exercises name) associate at one userId
 router.get('/workouts', isAuthenticated, async (req, res) => {
-    console.log(req.isAuthenticated)
     let userId = req.isAuthenticated
-
     const workouts = await Workout.findAll({
         where: {userId},
         include: [
