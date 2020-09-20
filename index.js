@@ -28,14 +28,14 @@ app.use(
 
 
 // Routes Users
-app.use('/api/v1/user', require('./router/users'))
+app.use('/user', require('./router/users'))
 
-app.use('/api/v1/user', require('./router/userCreate'))
+app.use('/user', require('./router/userCreate'))
 
-app.use('/api/v1', require('./router/userLogin'))
+app.use('/', require('./router/userLogin'))
 
 // Routes Workouts
-app.use('/api/v1', require('./router/workouts'))
+app.use('/', require('./router/workouts'))
 
 app.get('/', function (req, res) {
     res.send('Hello World!');
