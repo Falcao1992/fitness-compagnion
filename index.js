@@ -2,7 +2,8 @@ const express = require ('express')
 const cors = require('cors');
 const app = express()
 
-app.use(cors())
+//app.use(cors())
+app.use(cors({credentials: true, origin: 'https://fitness-companion.netlify.app'}));
 /*app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "https://fitness-companion.netlify.app"); // update to match the domain you will make the request frommm
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
