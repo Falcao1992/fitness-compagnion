@@ -15,13 +15,6 @@ module.exports = {
     "dialect": "mysql"
   },
   "production": {
-    "username": process.env.HEROKU_USER,
-    "password": process.env.HEROKU_PASSWORD,
-    "database": process.env.HEROKU_DB,
-    "host": process.env.HEROKU_HOST,
-    "port": process.env.HEROKU_PORT,
-    "dialect": "mysql",
-    "operatorsAliases": 1,
     "use_env_variable": "JAWSDB_URL"
   }
 }
