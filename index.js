@@ -37,6 +37,11 @@ app.use('/api/v1', require('./router/userLogin'))
 // Routes Workouts
 app.use('/api/v1', require('./router/workouts'))
 
+app.get('/', function (req, res) {
+    res.send('Hello World!');
+    console.log('route depart')
+});
+
 
 const port = 8000
 
