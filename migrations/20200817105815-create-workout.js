@@ -20,7 +20,7 @@ module.exports = {
             type: Sequelize.TIME,
             allowNull: false,
         },
-        UserId: {
+        userId: {
             allowNull: false,
             type: Sequelize.INTEGER,
             references: {
