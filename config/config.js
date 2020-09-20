@@ -21,7 +21,7 @@ module.exports = {
     "host": process.env.HEROKU_HOST,
     "port": process.env.HEROKU_PORT,
     "dialect": "mysql",
-    "operatorsAliases": false,
+    "operatorsAliases": 1,
     "use_env_variable": "DATABASE_URL"
   }
 }
