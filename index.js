@@ -2,16 +2,23 @@ const express = require ('express')
 const cors = require('cors');
 const app = express()
 
-
-app.use(express.json());
 app.use(cors())
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "https://fitness-companion.netlify.app"); // update to match the domain you will make the request frommm
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     console.log('dans le middleware cors')
     next();
-});
+});*/
 //app.use(cors({origin: ['http://localhost:5000', 'http://localhost:3000', 'https://fitness-companion.netlify.app']}));
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', 'https://fitness-companion.netlify.app');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
+
+app.use(express.json());
 app.use(
     express.urlencoded({
         extended: true,
