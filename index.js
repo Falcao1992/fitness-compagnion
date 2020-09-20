@@ -10,13 +10,13 @@ app.use(cors())
     next();
 });*/
 //app.use(cors({origin: ['http://localhost:5000', 'http://localhost:3000', 'https://fitness-companion.netlify.app']}));
-app.use(function (req, res, next) {
+/*app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', 'https://fitness-companion.netlify.app');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
-});
+});*/
 
 app.use(express.json());
 app.use(
