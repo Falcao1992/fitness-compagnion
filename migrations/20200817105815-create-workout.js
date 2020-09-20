@@ -24,7 +24,7 @@ module.exports = {
             allowNull: false,
             type: Sequelize.INTEGER,
             references: {
-                model: 'Users',
+                model: 'User',
                 key: 'id',
             },
             // if userId is deleted so data workout is deleted too
