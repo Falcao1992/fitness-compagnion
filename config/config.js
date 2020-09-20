@@ -22,6 +22,6 @@ module.exports = {
     "port": process.env.HEROKU_PORT,
     "dialect": "mysql",
     "operatorsAliases": 1,
-    "use_env_variable": "DATABASE_URL"
+    "use_env_variable": "JAWSDB_URL"
   }
 }
