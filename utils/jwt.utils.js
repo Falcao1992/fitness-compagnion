@@ -2,13 +2,15 @@ require('dotenv').config()
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 
+const secret = 'k6e9v2j5r4f3yjbt8ht1fe7htht67fefu82gt6e3fe1ngd2dgrr54eez24fzgr3'
+
 module.exports = {
     generateTokenForUser(userData) {
         return jwt.sign(
             {
                 userId: userData.id
             },
-            process.env.JWT_SIGN_SECRET,
+            secret,
             {
                 expiresIn: '1h'
             }
