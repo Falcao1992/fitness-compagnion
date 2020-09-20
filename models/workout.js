@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         userId: DataTypes.INTEGER,
     }, {});
     Workout.associate = (models) => {
-        models.Workout.belongsTo(models.User,  {onDelete: 'cascade', hooks:true});
+        models.Workout.belongsTo(models.User,  {onDelete: 'cascade'});
         models.Workout.hasMany(models.DetailsExercise);
     };
     return Workout;
