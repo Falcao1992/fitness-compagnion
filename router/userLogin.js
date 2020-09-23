@@ -9,10 +9,6 @@ const router = express.Router();
 // Route for login
 router.post("/login", async (req, res) => {
     // Get Data from Request Body
-    //res.setHeader('Access-Control-Allow-Origin', 'https://fitness-companion.netlify.app')
-    //if(req.method === "OPTIONS") {
-      //  res.setHeader('Access-Control-Allow-Headers', 'Accept, Content-Type')
-    //}
     const username = req.body.username;
     const password = req.body.password;
     // Check if all fields are completed
@@ -34,6 +30,7 @@ router.post("/login", async (req, res) => {
                     if (resBycrypt) {
                         return res.status(200).json({
                             userId: userFound.id,
+                            username: userFound.username,
                             token: generateTokenForUser(userFound)
                         });
                     } else {
