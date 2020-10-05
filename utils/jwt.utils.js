@@ -2,7 +2,7 @@ require('dotenv').config()
 const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 
-const secret = 'k6e9v2j5r4f3yjbt8ht1fe7htht67fefu82gt6e3fe1ngd2dgrr54eez24fzgr3'
+const secret = 'JWT_SECRET'
 
 module.exports = {
     generateTokenForUser(userData) {
