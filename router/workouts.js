@@ -64,7 +64,7 @@ router.put('/:userId/workout/:id', async (req, res) => {
     res.status(200).send(workoutUpdated)
 })
 
-// Delete one Workout by id
+// Delete one Workouts by id
 router.delete('/workouts/:id', async (req, res) => {
     const {id} = req.params
     await Workout.destroy({where: {id}})
