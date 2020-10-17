@@ -5,7 +5,7 @@ module.exports = {
         return queryInterface.bulkInsert('Users', [
             {
                 username: 'John',
-                password: PassGenX.BpassGen('azerty'),
+                password: PassGenX.BpassGen('azerty1'),
                 gender: 'man',
                 size: '170',
                 weight: "65",
@@ -16,7 +16,7 @@ module.exports = {
             },
             {
                 username: 'Sarah',
-                password: PassGenX.BpassGen('azerty'),
+                password: PassGenX.BpassGen('azerty1'),
                 gender: 'women',
                 size: '170',
                 weight: "65",
@@ -27,7 +27,7 @@ module.exports = {
             },
             {
                 username: 'Victor',
-                password: PassGenX.BpassGen('azerty'),
+                password: PassGenX.BpassGen('azerty1'),
                 gender: 'man',
                 size: '175',
                 weight: "75",
